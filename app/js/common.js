@@ -13,9 +13,12 @@ $('nav li').on('click', function () {
     $(this).addClass('active');
     $('nav').hasClass('active')? setTimeout(function(){
         $('nav').removeClass('active');
-        $('body').css({'overflow':'auto'})
+        $('body').css({'overflow':'auto'});
+        setTimeout(function () {
+            $('html, body').animate({scrollTop:$(scrollId).position().top}, 800);
+        }, 300)
     }, 150) : null;
-    $('html, body').animate({scrollTop:$(scrollId).position().top}, 800);
+
 });
 
 //    -------------------------------------     open popup window with info about selected work
