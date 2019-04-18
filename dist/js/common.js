@@ -8,12 +8,17 @@ $('.mobile-toggle-nav').on('click', function () {
 
 //   -------------------------------------     set active class to menu
 $('nav li').on('click', function () {
+    var scrollId = '#' + $(this).attr('data-scroll-Id');
     $('li.active').removeClass('active');
     $(this).addClass('active');
     $('nav').hasClass('active')? setTimeout(function(){
         $('nav').removeClass('active');
-        $('body').css({'overflow':'auto'})
+        $('body').css({'overflow':'auto'});
+        setTimeout(function () {
+            $('html, body').animate({scrollTop:$(scrollId).position().top}, 800);
+        }, 300)
     }, 150) : null;
+
 });
 
 //    -------------------------------------     open popup window with info about selected work
@@ -53,13 +58,14 @@ $('.work-popup-close, .work-popup_background').on('click', function(e){
 
 // -----------------------------------------        scroll top
 window.addEventListener('scroll', function(){
-    var needBtn = (document.documentElement.scrollTop >= document.documentElement.clientHeight/2),
+    var needBtn = (document.documentElement.scrollTop >= document.documentElement.clientHeight/1.2),
         scroll = $('.scroll-top_bnt');
         needBtn? scroll.show() : scroll.hide();
 });
 
 $('.scroll-top_bnt').on('click', function () {
-    document.documentElement.scrollTop = 0;
+    $('html, body').animate({scrollTop:$('nav').position().top}, 800);
 
 })
+
 
