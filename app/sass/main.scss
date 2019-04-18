@@ -1,0 +1,589 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,700');
+
+// import pallet variables
+// https://colorscheme.ru/#0Ib1BCoWQ-7T6
+$color-primary-0: rgba(255, 153,   0, 1);	/* Main color */
+$color-primary-1: rgba(153, 102,  51, 1);
+$color-primary-2: rgba(102,  51,   0, 0.8);
+$color-primary-3: rgba(255, 204, 102, 1);
+$color-primary-4: rgba(255, 255, 204, 1);
+
+$color-secondary-a-0: rgba(  0, 102, 255, 1);	/* Second color A */
+$color-secondary-a-1: rgba( 51, 102, 102, 1);
+$color-secondary-a-2: rgba(  0,  51,  51, 1);
+$color-secondary-a-3: rgba(102, 153, 255, 1);
+$color-secondary-a-4: rgba(204, 204, 255, 1);
+
+$color-secondary-b-0: rgba(  0, 204, 255, 1);	/* Second color B */
+$color-secondary-b-1: rgba( 51, 102, 102, 1);
+$color-secondary-b-2: rgba(  0,  51,  51, 1);
+$color-secondary-b-3: rgba(102, 255, 255, 1);
+$color-secondary-b-4: rgba(204, 255, 255, 1);
+
+
+// ----------- Used colors
+
+$brown-08: rgba(102,  51, 0, 0.8);
+$main-yellow: #FF9900;
+$main-lightYellow: #FFCC66;
+$main-lightYellow-08: rgba(255, 204, 102, 0.8);
+$white-yellow: #FFFFCC;
+$white-yellow-01: rgba(255, 255, 204, 0.1);
+$blue: #0066FF;
+$light-blue: #CCCCFF;
+$sky-blue: #00CCFF;
+$lime: #66FFFF;
+$white-lime: #CCFFFF;
+$white-lime-03: rgba(204, 255, 255, 0.3);
+$dark-blue: rgba(14, 40, 65, 1);
+$dark-blue-06: rgba(14, 40, 65, 0.6);
+$dark-blue-08: rgba(14, 40, 65, 0.8);
+
+//fonts
+$text-font: 'Source Sans Pro', sans-serif;
+$accent-font: 'Montserrat', sans-serif;
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $text-font;
+  font-size: 17px;
+  line-height: 1.6rem;
+  font-weight: 300;
+  overflow-y: scroll;
+  a{
+    color: $white-lime;
+    text-decoration: none;
+  }
+  &::-webkit-scrollbar{
+    background-color: transparent;
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: $main-yellow;
+    width: 2px;
+  }
+}
+/* -----------    header section---------------- */
+#header {
+  font-family: $accent-font;
+  background-color: $dark-blue;
+  color: $white-lime;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 2rem;
+  padding: 5px 15px;
+  position: relative;
+  ul{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    li{
+      display: inline-block;
+      margin-left: 1rem;
+      position: relative;
+      &::after {
+        display: block;
+        content: '';
+        height: 1px;
+        transition: width 0.2s ease-in-out;
+        width: 0;
+      }
+      &:hover {
+        cursor: pointer;
+        &::after {
+          background-color: $white-yellow;
+          width: 100%;
+        }
+      }
+      &.active{
+        &::after{
+          display: block;
+          content: '';
+          height: 1px;
+          transition: width 0.2s ease-in-out;
+          width: 100%;
+          background-color: $white-yellow;
+        }
+        &::before{
+          display: block;
+          content: '';
+          height: 70%;
+          width: 100%;
+          background-color: $white-yellow;
+          opacity: 0.25;
+          position: absolute;
+          bottom: -2px;
+          left: 2px;
+        }
+      }
+    }
+  }
+  nav{
+    display: flex;
+    align-items: center;
+    .mobile-toggle-nav{
+      display: none;
+      width: 25px;
+      height: 25px;
+      span{
+        position: relative;
+        display: block;
+        height: 1px;
+        background-color: $white-yellow;
+        transition: all ease-in-out 0.3s;
+        margin-top: 0.5rem;
+        &::before,
+        &::after{
+          position: absolute;
+          content: '';
+          width: 60%;
+          margin: 0 20%;
+          height: 1px;
+          background-color: $white-yellow;
+          transition: all ease-in-out 0.7s;
+        }
+        &::before{
+          top: -0.5rem;
+        }
+        &::after{
+          top: 0.5rem;
+        }
+      }
+    }
+  }
+}
+
+/* -------------- media styles for mobile navigation --------------------*/
+@media all and (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+  #header{
+    nav {
+      div.mobile-toggle-nav{
+        display: block;
+      }
+      &.active {
+        width: 80%;
+        border-left: 1px solid;
+
+        .mobile-toggle-nav {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+        }
+        ul {
+          display: block;
+          height: calc(100vh - 42px);
+          li {
+            display: block;
+            line-height: 1.5rem;
+            margin: 1rem auto;
+          }
+        }
+        span {
+          background-color: transparent;
+          &::before {
+            width: 100%;
+            transform: rotate(45deg) translate(0, 2px);
+            transform-origin: left;
+          }
+          &::after {
+            width: 100%;
+            transform: rotate(-45deg) translate(-3px, 1px);
+            transform-origin: left;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*-------------------- description site ---------------------------*/
+#siteDescription{
+  position: relative;
+  .title{
+    font-family: $accent-font;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    height: 100%;
+    justify-content: center;
+    left: 5%;
+    color: $white-lime;
+    text-transform: uppercase;
+    h1{
+      font-size: 300%;
+      line-height: 80%;
+      margin: 0 0 20px 0;
+      color:$main-yellow;
+    }
+  }
+}
+/*-------------------- end description site ---------------------------*/
+/*---------------------- services -------------------*/
+#services{
+  margin: 0;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: $dark-blue;
+  color: $white-lime;
+  .services-text{
+    margin: 5px 10% 50px;
+  }
+}
+
+/*---------------------- end services -------------------*/
+/*---------------------- technologies section -----------*/
+#technologies{
+  background-color: $white-yellow-01;
+  margin: 0;
+  padding: 15px;
+  color: $dark-blue;
+  h2{
+    color: $main-yellow;
+  }
+  .technologies-subtitle {
+    text-align: center;
+    font-weight: 400;
+  }
+
+  .front {
+    grid-area: front;
+  }
+  .back-end {
+    grid-area: back;
+  }
+  .dev-ops{
+    .technologies-icon{
+      grid-area: icon;
+    }
+    h3{
+      grid-area: title;
+    }
+    .technologies-item_text{
+      grid-area: text;
+    }
+    grid-area: dev;
+  }
+  .stack-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    grid-template-areas:
+      "front back"
+      "dev dev";
+    .technologies-card{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid $main-yellow;
+      padding: 25px;
+
+      .technologies-item_text{
+        flex-grow: 1;
+      }
+
+    }
+    .dev-ops{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+              'title title'
+              'icon text';
+      .technologies-icon{
+        text-align: center;
+        align-self: center;
+        font-size: 5.5rem;
+      }
+      h3{
+        text-align: center;
+      }
+      @media all and (max-device-width: 700px){
+        grid-template-columns: 1fr;
+        grid-template-areas:
+                'icon'
+                'title'
+                'text';
+        .technologies-item_text{
+          justify-self: center;
+        }
+      }
+
+  }
+    @media all and (max-device-width: 700px){
+      grid-template-columns: 1fr;
+      grid-template-areas:
+      'front'
+      'back'
+      'dev';
+    }
+  }
+  .technologies-icon{
+    position: relative;
+    color: $main-yellow;
+    font-size: 3rem;
+  }
+}
+/*---------------------- end technologies section -------*/
+
+/*-----------------------works section  -------------------*/
+
+#works{
+  background-color: $dark-blue;
+  color: $white-lime;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: stretch;
+  & > h2{
+    width: 100%;
+  }
+  .works-item-wrapper{
+    border: 1px solid $dark-blue;
+    min-width: 300px;
+    width: 30%;
+    max-width: 100%;
+    max-height: 40vh;
+    flex-grow: 1;
+    position: relative;
+    .work-item-description,
+    .work-item_tasks,
+    .work-item_stack{
+      display: none;
+    }
+    .image{
+      width: 100%;
+      height: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .work-item-content{
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      background-color: $dark-blue-06;
+      justify-content: flex-end;
+      transition: all ease-in-out 0.7s;
+      .work-hover-icon{
+        font-size: 4rem;
+        align-self: center;
+        transition: all ease-in-out 0.3s;
+        color: $main-lightYellow;
+        opacity: 0;
+      }
+    }
+    &:hover{
+      .work-item-content{
+        background-color: $brown-08;
+        .work-hover-icon{
+          opacity: 1;
+        }
+        h2{
+          color: $main-lightYellow;
+        }
+      }
+    }
+  }
+}
+
+/*-----------------------end works section  ---------------*/
+
+/*----------------------- footer --------------------------*/
+
+#footer{
+  background-color: $dark-blue;
+  padding: 50px 20px;
+  color: $main-yellow;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+/*----------------------- end footer ----------------------*/
+
+/* ----------------------- scroll top ---------------------*/
+.scroll-top_bnt{
+  display: none;
+  position: fixed;
+  padding: 6px 12px;
+  background-color: $main-yellow;
+  opacity: 0.3;
+  color: $dark-blue;
+  bottom: 15px;
+  right: 15px;
+  transform: rotate(-45deg);
+  transition: opacity ease-in-out 0.15s;
+  z-index: 10;
+  &:hover{
+    opacity: 1;
+  }
+}
+/* ----------------------- end scroll top -----------------*/
+
+
+
+/*-----------------------  popup  -----------------------------*/
+.work-popup_image{
+  grid-area: image;
+}
+.work-popup_title{
+  grid-area: title;
+}
+.work-popup_description{
+  grid-area: description;
+}
+.work-popup_tasks{
+  grid-area: tasks;
+}
+.work-popup_stack{
+  grid-area: stack;
+}
+.work-popup_background{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-color: $dark-blue-08;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  justify-content: center;
+  align-items: center;
+}
+.work-popup{
+  width: 90%;
+  max-width: 700px;
+  margin: 5%;
+  display: grid;
+  position: relative;
+  height: 90%;
+  max-height: 600px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 5;
+  grid-gap: 5px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+  'image title'
+  'image description'
+  'tasks stack';
+  background-color: $white-yellow;
+  border: 1px solid $main-yellow;
+  .work-popup_image{
+    width: 100%;
+    height: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding: 5px;
+      }
+  }
+  div{
+   &:not(.work-popup_image){
+     padding: 15px;
+   }
+    li{
+      display: block;
+      &::before{
+        content: '\1F5F8';
+        margin-right: 5px;
+        font-weight: bold;
+      }
+    }
+  }
+  .work-popup_tasks,
+  .work-popup_stack,
+  .work-popup_title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &::-webkit-scrollbar{
+    background-color: transparent;
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: $main-yellow;
+    width: 2px;
+  }
+  .work-popup-close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 2rem;
+    color: $dark-blue-06;
+    opacity: 0.5;
+    transition: all ease-in 0.15s;
+    &:hover{
+      cursor: pointer;
+      color: $main-yellow;
+      transform: scale(1.3);
+      opacity: 1;
+    }
+  }
+
+  @media all and (max-device-width: 700px){
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    'title'
+    'image'
+    'description'
+    'tasks'
+    'stack';
+    &> div > div {
+      align-self: flex-start;
+    }
+  }
+}
+
+/*-----------------------  end  popup  ------------------------*/
+/*-------- wrappers ------------*/
+.img-wrapper{
+  height: 70vh;
+  position: relative;
+  .color-overlay{
+    background-color: $dark-blue;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px) saturate(4);
+  }
+}
+section{
+  h2{
+    margin: 50px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+h3{
+  text-transform: uppercase;
+}
+.hidden{
+  display: none;
+}
