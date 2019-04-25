@@ -35,8 +35,12 @@ $light-blue: #CCCCFF;
 $sky-blue: #00CCFF;
 $lime: #66FFFF;
 $white-lime: #CCFFFF;
+$white:   #FFFFFF;
 $white-lime-03: rgba(204, 255, 255, 0.3);
 $dark-blue: rgba(14, 40, 65, 1);
+$dark-blue-007: rgba(14, 40, 65, 0.07);
+$form-background: rgb(238, 240, 242);
+$dark-blue-03: rgba(14, 40, 65, 0.3);
 $dark-blue-06: rgba(14, 40, 65, 0.6);
 $dark-blue-08: rgba(14, 40, 65, 0.8);
 
@@ -97,27 +101,6 @@ body {
         &::after {
           background-color: $white-yellow;
           width: 100%;
-        }
-      }
-      &.active{
-        &::after{
-          display: block;
-          content: '';
-          height: 1px;
-          transition: width 0.2s ease-in-out;
-          width: 100%;
-          background-color: $white-yellow;
-        }
-        &::before{
-          display: block;
-          content: '';
-          height: 70%;
-          width: 100%;
-          background-color: $white-yellow;
-          opacity: 0.25;
-          position: absolute;
-          bottom: -2px;
-          left: 2px;
         }
       }
     }
@@ -213,15 +196,16 @@ body {
     flex-direction: column;
     top: 0;
     height: 100%;
+    font-weight: 600;
+    width: 50%;
     justify-content: center;
     left: 5%;
-    color: $white-lime;
+    color: $main-yellow;
     text-transform: uppercase;
     h1{
       font-size: 300%;
       line-height: 80%;
       margin: 0 0 20px 0;
-      color:$main-yellow;
     }
   }
 }
@@ -237,93 +221,44 @@ body {
   .services-text{
     margin: 5px 10% 50px;
   }
+  .technologies-subtitle {
+    text-align: center;
+    font-weight: 400;
+  }
 }
 
 /*---------------------- end services -------------------*/
 /*---------------------- technologies section -----------*/
 #technologies{
-  background-color: $white-yellow-01;
+  background-color: $dark-blue-007;
   margin: 0;
   padding: 15px;
   color: $dark-blue;
   h2{
     color: $main-yellow;
   }
-  .technologies-subtitle {
-    text-align: center;
-    font-weight: 400;
-  }
-
-  .front {
-    grid-area: front;
-  }
-  .back-end {
-    grid-area: back;
-  }
-  .dev-ops{
-    .technologies-icon{
-      grid-area: icon;
-    }
-    h3{
-      grid-area: title;
-    }
-    .technologies-item_text{
-      grid-area: text;
-    }
-    grid-area: dev;
-  }
   .stack-wrapper{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-    grid-template-areas:
-      "front back"
-      "dev dev";
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: stretch;
     .technologies-card{
+      background-color: $white;
+      min-width: 200px;
+      margin: 8px;
+      width: calc(30% - 68px);
+      max-width: 100%;
+      flex-grow: 1;
+      position: relative;
       display: flex;
       justify-content: center;
       flex-direction: column;
       align-items: center;
-      border: 1px solid $main-yellow;
       padding: 25px;
 
       .technologies-item_text{
         flex-grow: 1;
       }
 
-    }
-    .dev-ops{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas:
-              'title title'
-              'icon text';
-      .technologies-icon{
-        text-align: center;
-        align-self: center;
-        font-size: 5.5rem;
-      }
-      h3{
-        text-align: center;
-      }
-      @media all and (max-device-width: 700px){
-        grid-template-columns: 1fr;
-        grid-template-areas:
-                'icon'
-                'title'
-                'text';
-        .technologies-item_text{
-          justify-self: center;
-        }
-      }
-
-  }
-    @media all and (max-device-width: 700px){
-      grid-template-columns: 1fr;
-      grid-template-areas:
-      'front'
-      'back'
-      'dev';
     }
   }
   .technologies-icon{
@@ -337,17 +272,19 @@ body {
 /*-----------------------works section  -------------------*/
 
 #works{
-  background-color: $dark-blue;
+  background-color: $dark-blue-007;
   color: $white-lime;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-items: stretch;
-  & > h2{
+  & > .title{
     width: 100%;
+    background-color: $dark-blue;
   }
+
   .works-item-wrapper{
-    border: 1px solid $dark-blue;
+    margin: 8px;
     min-width: 300px;
     width: 30%;
     max-width: 100%;
@@ -369,6 +306,7 @@ body {
       }
     }
     .work-item-content{
+      color: $main-yellow;
       position: absolute;
       display: flex;
       flex-direction: column;
@@ -377,9 +315,8 @@ body {
       top: 0;
       left: 0;
       z-index: 1;
-      background-color: $dark-blue-06;
       justify-content: flex-end;
-      transition: all ease-in-out 0.7s;
+      transition: all ease-in-out 0.5s;
       .work-hover-icon{
         font-size: 4rem;
         align-self: center;
@@ -390,7 +327,7 @@ body {
     }
     &:hover{
       .work-item-content{
-        background-color: $brown-08;
+        background-color: $dark-blue-06;
         .work-hover-icon{
           opacity: 1;
         }
@@ -412,7 +349,11 @@ body {
   color: $main-yellow;
   font-size: 1rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  div{
+    margin-top: 20px;
+  }
 }
 /*----------------------- end footer ----------------------*/
 
@@ -420,10 +361,10 @@ body {
 .scroll-top_bnt{
   display: none;
   position: fixed;
-  padding: 6px 12px;
+  padding: 6px 10px;
   background-color: $main-yellow;
-  opacity: 0.3;
-  color: $dark-blue;
+  opacity: 0.8;
+  color: $white-lime;
   bottom: 15px;
   right: 15px;
   transform: rotate(-45deg);
@@ -431,6 +372,7 @@ body {
   z-index: 10;
   &:hover{
     opacity: 1;
+    cursor: pointer;
   }
 }
 /* ----------------------- end scroll top -----------------*/
@@ -461,7 +403,7 @@ body {
   background-color: $dark-blue-08;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 15;
   justify-content: center;
   align-items: center;
 }
@@ -522,21 +464,6 @@ body {
     background-color: $main-yellow;
     width: 2px;
   }
-  .work-popup-close{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-size: 2rem;
-    color: $dark-blue-06;
-    opacity: 0.5;
-    transition: all ease-in 0.15s;
-    &:hover{
-      cursor: pointer;
-      color: $main-yellow;
-      transform: scale(1.3);
-      opacity: 1;
-    }
-  }
 
   @media all and (max-device-width: 700px){
     grid-template-columns: 1fr;
@@ -553,10 +480,112 @@ body {
 }
 
 /*-----------------------  end  popup  ------------------------*/
+/*-----------------------  contact form -----------------------*/
+#contact-form{
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: $dark-blue-03;
+  .response-massage{
+    display: none;
+    position: absolute;
+    background: $form-background;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 200%;
+    flex-direction: row;
+    line-height: 2em;
+    text-align: center;
+  }
+}
+.no_events{
+  pointer-events: none;
+}
+.contact-form-wrapper{
+  background-color: $form-background;
+  position: relative;
+  padding: 50px 0;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    position: relative;
+    input,
+    textarea{
+      font-family: $text-font;
+      font-size: 1.1em;
+      width: 100%;
+      margin: 20px;
+      background: transparent;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid $dark-blue-06;
+      resize: none;
+      &::placeholder{
+        color: $dark-blue;
+        font-family: $text-font;
+        opacity: 0.5;
+      }
+      &::-webkit-scrollbar{
+        background-color: transparent;
+        width: 5px;
+      }
+      &::-webkit-scrollbar-thumb{
+        background-color: $main-yellow;
+        width: 2px;
+      }
+    }
+    button{
+      background: $dark-blue-007;
+      border: none;
+      padding: 8px 15px;
+      color: $dark-blue;
+      font-size: 1em;
+      font-family: $accent-font;
+      font-weight: 600;
+      &:hover{
+        color: $white-yellow;
+        background-color: $main-yellow;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+
+
+
+/*-----------------------  end contact form -------------------*/
+
+
+
+
+
+
 /*-------- wrappers ------------*/
 .img-wrapper{
   height: 70vh;
   position: relative;
+  overflow: hidden;
   .color-overlay{
     background-color: $dark-blue;
     opacity: 0.6;
@@ -570,7 +599,8 @@ body {
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: 100% 50%;
     filter: blur(5px) saturate(4);
   }
 }
@@ -583,7 +613,24 @@ section{
 }
 h3{
   text-transform: uppercase;
+  text-align: center;
 }
 .hidden{
   display: none;
+}
+.work-popup-close,
+.contact-popup-close{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 2rem;
+  color: $dark-blue-06;
+  opacity: 0.5;
+  transition: all ease-in 0.15s;
+  &:hover{
+    cursor: pointer;
+    color: $main-yellow;
+    transform: scale(1.3);
+    opacity: 1;
+  }
 }

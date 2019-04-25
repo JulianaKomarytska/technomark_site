@@ -1,0 +1,26 @@
+КАК ПОЛЬЗОВАТЬСЯ:
+npm install - что бы развернуть проект и установить все node modules
+
+gulp watch  - запускает локальный сервер, открывает проект на localhost в браузере и отслеживает изменения в документах проекта.
+Если в проекте был изменен любой из документов (scss, js, html) (изменения сохранены) - файлы пересобираются и автоматически обновляются в браузере
+
+gulp build - пересобирает проект для прода (папка dist)
+
+app - папка с файлами для разработки
+
+dist - чистовой проект готовый для продакшена
+
+
+
+// HOW TO USE
+=> npm install - to deploy the project in local and install all of the node modules
+
+=> gulp watch  - starts the local server, opens the project on localhost in the browser and tracks changes in the project documents.
+If any of the documents (scss, js, html) were changed in the project (changes are saved) - the files are reassembled and automatically updated in the browser
+
+=> gulp build - recompiles the project for production (folder dist)
+
+
+Folders:
+----> app - development folder
+----> dist - finished project ready for production
