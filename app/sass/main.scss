@@ -361,10 +361,8 @@ body {
 .scroll-top_bnt{
   display: none;
   position: fixed;
-  padding: 6px 10px;
-  background-color: $main-yellow;
-  opacity: 0.8;
-  color: $white-lime;
+  color: $main-yellow;
+  font-size: 2.5em;
   bottom: 15px;
   right: 15px;
   transform: rotate(-45deg);
@@ -586,6 +584,7 @@ body {
   height: 70vh;
   position: relative;
   overflow: hidden;
+  background: $white;
   .color-overlay{
     background-color: $dark-blue;
     opacity: 0.6;

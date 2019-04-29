@@ -357,10 +357,8 @@ body {
 .scroll-top_bnt {
   display: none;
   position: fixed;
-  padding: 6px 10px;
-  background-color: #FF9900;
-  opacity: 0.8;
-  color: #CCFFFF;
+  color: #FF9900;
+  font-size: 2.5em;
   bottom: 15px;
   right: 15px;
   -webkit-transform: rotate(-45deg);
@@ -629,7 +627,8 @@ body {
 .img-wrapper {
   height: 70vh;
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  background: #FFFFFF; }
   .img-wrapper .color-overlay {
     background-color: #0e2841;
     opacity: 0.6;
