@@ -11,6 +11,15 @@ app - папка с файлами для разработки
 dist - чистовой проект готовый для продакшена
 
 
+Для работы у меня установлено:
+Node js v10.15.0
+npm v6.6.0
+
+Если во время сборки возникла ошибка:
+1. Попробовать удалить папку npm-cache (C:\Users\YOU_User\AppData\Roaming\npm-cache)
+
+
+
 
 // HOW TO USE
 => npm install - to deploy the project in local and install all of the node modules
@@ -24,3 +33,6 @@ If any of the documents (scss, js, html) were changed in the project (changes ar
 Folders:
 ----> app - development folder
 ----> dist - finished project ready for production
+
+
+
