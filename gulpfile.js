@@ -27,12 +27,12 @@ gulp.task ('scripts', function() {
 	.pipe(gulp.dest('app/js'));
 });
 
-gulp.task ('css-libs', ['sass'], function(){
+gulp.task ('css-libs', gulp.series('sass', function(){
 	return gulp.src('app/css/libs.css')
 	.pipe(cssnano())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(gulp.dest('app/css'));
-})
+}));
 
 gulp.task ('browser-sync', function(){
 	browserSync({
@@ -61,16 +61,16 @@ gulp.task('img', function() {
 		svgoPlugins: [{removeViewBox: false}],
 		})))
 	.pipe(gulp.dest('dist/img'));
-})
+});
 
-gulp.task ('watch', ['browser-sync', 'css-libs', 'scripts'], function () {
+gulp.task ('watch', gulp.series('browser-sync', 'css-libs', 'scripts', function () {
 	gulp.watch('app/sass/**/*.scss', [sass]);
 	gulp.watch('app/**/*.html', browserSync.reload)
 	gulp.watch('app/js/**/*.js', browserSync.reload)
-});
+}));
 
 
-gulp.task('build', ['clean', 'sass', 'scripts', 'img'], function() {
+gulp.task('build', gulp.series('clean', 'sass', 'scripts', 'img', function() {
 	var buildCss = gulp.src([
 		'app/css/main.css',
 		'app/css/libs.min.css'
@@ -87,4 +87,4 @@ gulp.task('build', ['clean', 'sass', 'scripts', 'img'], function() {
 
 	var buildHtml =gulp.src('app/*.html')
 	.pipe(gulp.dest('dist'));
-})
+}));
