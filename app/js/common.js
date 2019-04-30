@@ -70,7 +70,6 @@ $('.scroll-top_bnt').on('click', function () {
 
 //----------------------------------------           close contact form
 $('.contact-popup-close i, #contact-form').on('click', function(e){
-    console.log('e', this, e.target, this === e.target);
     e.stopPropagation();
     this === e.target ? closeAndClear($('#contact-form')): null;
 });
@@ -140,6 +139,7 @@ function closeAndClear($element, options) {
         hidePopup($element);
         $($element).removeClass('no_events');
         $responsePlace? $responsePlace.css({display: 'none'}): null;
-        $('form').find('input, textarea').each(function(i, item){$(item).val('')})
+        //$('form').find('input, textarea').each(function(i, item){$(item).val('')})
+        $('form')[0].reset();
     }, delay)
 }
