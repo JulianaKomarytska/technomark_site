@@ -50,7 +50,7 @@ $('.works-item-wrapper').on('click',function () {
 });
 
 //    -------------------------------------     close popup
-$('.work-popup-close, .work-popup_background').on('click', function(e){
+$('.work-popup-close i, .work-popup_background').on('click', function(e){
     e.stopPropagation();
     this === e.target ? hidePopup($('.work-popup_background')) : null;
 
@@ -69,7 +69,8 @@ $('.scroll-top_bnt').on('click', function () {
 })
 
 //----------------------------------------           close contact form
-$('.contact-popup-close, #contact-form').on('click', function(e){
+$('.contact-popup-close i, #contact-form').on('click', function(e){
+    console.log('e', this, e.target, this === e.target);
     e.stopPropagation();
     this === e.target ? closeAndClear($('#contact-form')): null;
 });

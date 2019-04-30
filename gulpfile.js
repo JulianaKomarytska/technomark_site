@@ -11,36 +11,40 @@ var gulp = require('gulp'),
 	autoprefixer = require('gulp-autoprefixer');
 
 
-gulp.task('sass', function() {
+gulp.task('sass', done => {
 	return gulp.src('app/sass/**/*.scss')
 	.pipe(sass())
 	.pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {cascade: true}))
 	.pipe(gulp.dest('app/css'))
-	.pipe(browserSync.reload({stream: true}))
+	.pipe(browserSync.reload({stream: true}));
+    done();
 });
 
-gulp.task ('scripts', function() {
+gulp.task ('scripts', done=> {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js'])
 	.pipe(concat('libs.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('app/js'));
+	done();
 });
 
-gulp.task ('css-libs', gulp.series('sass', function(){
+gulp.task ('css-libs', gulp.series('sass', done => {
 	return gulp.src('app/css/libs.css')
 	.pipe(cssnano())
 	.pipe(rename({suffix: '.min'}))
 	.pipe(gulp.dest('app/css'));
+    done();
 }));
 
-gulp.task ('browser-sync', function(){
+gulp.task ('browser-sync', done =>{
 	browserSync({
 		server: {
 			baseDir: 'app'
 		},
 		notify: false
 	});
+	done();
 });
 
 gulp.task ('clean', done => {
@@ -48,13 +52,14 @@ gulp.task ('clean', done => {
 	 done();
 });
 
-gulp.task ('clear', function() {
+gulp.task ('clear', done => {
 	return cache.clearAll();
-})
+	done();
+});
 
 
 
-gulp.task('img', function() {
+gulp.task('img', done=> {
 	return gulp.src('app/img/**/*')
 	.pipe(cache(imagemin({
 		interlaced: true,
@@ -62,12 +67,14 @@ gulp.task('img', function() {
 		svgoPlugins: [{removeViewBox: false}],
 		})))
 	.pipe(gulp.dest('dist/img'));
+	done()
 });
 
-gulp.task ('watch', gulp.series('browser-sync', 'css-libs', 'scripts', function () {
-	gulp.watch('app/sass/**/*.scss', [sass]);
+gulp.task ('watch', gulp.series('browser-sync', 'css-libs', 'scripts', done => {
+	gulp.watch('app/sass/**/*.scss', gulp.series('sass'));
 	gulp.watch('app/**/*.html', browserSync.reload);
-	gulp.watch('app/js/**/*.js', browserSync.reload)
+	gulp.watch('app/js/**/*.js', browserSync.reload);
+	done()
 }));
 
 
@@ -86,7 +93,7 @@ gulp.task('build', gulp.series('clean', 'sass', 'scripts', 'img', done => {
 	var buildJs = gulp.src(['app/js/**/*'])
 	.pipe(gulp.dest('dist/js'));
 
-	var buildHtml =gulp.src('app/*.html')
+	var buildHtml = gulp.src('app/*.html')
 	.pipe(gulp.dest('dist'));
 
 	done()

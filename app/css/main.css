@@ -663,7 +663,7 @@ h3 {
 .contact-popup-close {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 10px;
   font-size: 2rem;
   color: rgba(14, 40, 65, 0.6);
   opacity: 0.5;
