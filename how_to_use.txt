@@ -1,4 +1,4 @@
-КАК ПОЛЬЗОВАТЬСЯ:
+﻿КАК ПОЛЬЗОВАТЬСЯ:
 npm install - что бы развернуть проект и установить все node modules
 
 gulp watch  - запускает локальный сервер, открывает проект на localhost в браузере и отслеживает изменения в документах проекта.
@@ -11,13 +11,14 @@ app - папка с файлами для разработки
 dist - чистовой проект готовый для продакшена
 
 
-Для работы у меня установлено:
+Для работы у меня предустановлено:
 Node js v10.15.0
-npm v6.6.0
+gulp глобально (npm gulp -g)
+
 
 Если во время сборки возникла ошибка:
 1. Попробовать удалить папку npm-cache (C:\Users\YOU_User\AppData\Roaming\npm-cache)
-
+2. npm audit fix
 
 
 
@@ -35,4 +36,14 @@ Folders:
 ----> dist - finished project ready for production
 
 
+Pre-install
+
+Node js v10.15.0
+gulp - globally (npm gulp -g)
+
+
+
+Fix problems: 
+1. Try to remove npm-cache folder (C:\Users\YOU_User\AppData\Roaming\npm-cache)
+2. Try to start command in cmd  - npm audit fix
 
